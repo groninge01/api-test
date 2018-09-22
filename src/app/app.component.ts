@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './services/auth.service';
+import { Restangular } from 'ngx-restangular';
+
 
 @Component({
   selector: 'app-root',
@@ -8,17 +9,20 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private authService: AuthService) {}
-
   title = 'api-test';
-
   response;
+  baseContent;
+
+  constructor(private restangular: Restangular) {}
 
   ngOnInit() {
-    this.authService.getBearerToken('groninge@hotmail.com', '2xtermin8!')
-    .subscribe(data => {
-      this.response = data.access_token;
+
+    this.baseContent = this.restangular.all('content');
+
+    this.baseContent.getList().subscribe(data => {
+      this.response = data;
     });
+
   }
 
 }
