@@ -10,7 +10,7 @@ import { Restangular } from 'ngx-restangular';
 export class AppComponent implements OnInit {
 
   title = 'api-test';
-  response;
+  content;
   baseContent;
 
   constructor(private restangular: Restangular) {}
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
     this.baseContent = this.restangular.all('content');
 
     this.baseContent.getList().subscribe(data => {
-      this.response = data;
+      this.content = data[0];
     });
 
   }
