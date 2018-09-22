@@ -296,6 +296,10 @@
   dependencies:
     "@types/jasmine" "*"
 
+"@types/lodash@^4.14.62":
+  version "4.14.116"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.116.tgz#5ccf215653e3e8c786a58390751033a9adca0eb9"
+
 "@types/node@^6.0.46":
   version "6.0.117"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.117.tgz#ccfc2506001404708528d657aad9c1b931111646"
@@ -4010,6 +4014,13 @@ negotiator@0.6.1:
 neo-async@^2.5.0:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.5.2.tgz#489105ce7bc54e709d736b195f82135048c50fcc"
+
+ngx-restangular@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-restangular/-/ngx-restangular-3.0.0.tgz#0b8ae9cc9055b394d82a898325b04661dadb7c8b"
+  dependencies:
+    "@types/lodash" "^4.14.62"
+    tslib "^1.9.0"
 
 nice-try@^1.0.4:
   version "1.0.5"
