@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { AuthService } from './services/auth.service';
+import { HomeComponent } from './components/home/home.component';
 
 // Function for settting the default restangular configuration
 export function RestangularConfigFactory (RestangularProvider, authService) {
@@ -67,7 +68,8 @@ export function RestangularConfigFactory (RestangularProvider, authService) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
