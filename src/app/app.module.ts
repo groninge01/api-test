@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 
 import { AuthService } from './services/auth.service';
 import { HomeComponent } from './components/home/home.component';
+import { NavComponent } from './components/nav/nav.component';
 
 // Function for settting the default restangular configuration
 export function RestangularConfigFactory (RestangularProvider, authService) {
@@ -69,7 +70,8 @@ export function RestangularConfigFactory (RestangularProvider, authService) {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
