@@ -9,7 +9,6 @@ import { Restangular } from 'ngx-restangular';
 })
 export class AppComponent implements OnInit {
 
-  title = 'api-test';
   content;
   baseContent;
 
