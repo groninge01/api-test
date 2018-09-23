@@ -5,12 +5,3 @@ node_js:
 script:
   - yarn lint
   - yarn build --base-href https://groninge01.github.io/api-test/
-
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  local_dir: dist/api-test
-  on:
-    branch: master
-
