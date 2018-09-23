@@ -10,14 +10,14 @@ import { AppComponent } from './app.component';
 import { AuthService } from './services/auth.service';
 
 // Function for settting the default restangular configuration
-export function RestangularConfigFactory (RestangularProvider, AuthService) {
+export function RestangularConfigFactory (RestangularProvider, authService) {
 
   RestangularProvider.setBaseUrl('https://api-test20180917094553.azurewebsites.net/umbraco/rest/v1');
 
   // This function must return observable
   const refreshAccesstoken = function () {
     // Here you can make action before repeated request
-    return AuthService.getBearerToken('test@test.com', 'USLDC9x6oO');
+    return authService.getBearerToken('test@test.com', 'USLDC9x6oO');
   };
 
   RestangularProvider.addErrorInterceptor((response, subject, responseHandler) => {
@@ -48,7 +48,7 @@ export function RestangularConfigFactory (RestangularProvider, AuthService) {
     return true; // error not handled
   });
 
-  // Set an interceptor in order to parse the API response 
+  // Set an interceptor in order to parse the API response
   // when getting a list of resources
   RestangularProvider.addResponseInterceptor((data, operation, what, url, response) => {
     if (operation === 'getList') {
