@@ -13,4 +13,3 @@ deploy:
   local_dir: dist/api-test
   on:
     branch: master
-
