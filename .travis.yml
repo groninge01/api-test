@@ -4,7 +4,7 @@ node_js:
 
 script:
   - yarn lint
-  - yarn build --base-href https://groninge01.github.io/api-test/
+  - yarn build --prod --aot --base-href https://groninge01.github.io/api-test/
 
 deploy:
   provider: pages
