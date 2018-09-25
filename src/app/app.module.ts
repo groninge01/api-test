@@ -8,11 +8,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { AuthService } from './services/auth.service';
+import { HomeComponent } from './components/home/home.component';
+import { NavComponent } from './components/nav/nav.component';
 
 // Function for settting the default restangular configuration
 export function RestangularConfigFactory (RestangularProvider, authService) {
 
   RestangularProvider.setBaseUrl('https://api-test20180917094553.azurewebsites.net/umbraco/rest/v1');
+
+  const _token = localStorage.getItem('token');
+  if (_token) {
+    RestangularProvider.setDefaultHeaders({'Authorization': `Bearer ${_token}`});
+  }
 
   // This function must return observable
   const refreshAccesstoken = function () {
@@ -23,6 +30,14 @@ export function RestangularConfigFactory (RestangularProvider, authService) {
   RestangularProvider.addErrorInterceptor((response, subject, responseHandler) => {
     if (response.status === 401) {
 
+      // const _token = localStorage.getItem('token');
+
+      // if (_token) {
+      //   console.log('using old token');
+      //   const newRequest = response.request.clone({setHeaders: {'Authorization': `Bearer ${_token}`}});
+      //   return response.repeatRequest(newRequest);
+      // }
+
       refreshAccesstoken()
       .pipe(
         switchMap(refreshAccesstokenResponse => {
@@ -31,11 +46,12 @@ export function RestangularConfigFactory (RestangularProvider, authService) {
 
         // update Authorization header
 
-        const token = 'Bearer ' + refreshAccesstokenResponse['access_token'];
+        const token = refreshAccesstokenResponse['access_token'];
+
+        localStorage.setItem('token', token);
 
         // response.request.headers.set('Authorization', token);
-        const newRequest = response.request.clone({setHeaders: {'Authorization': 'Bearer ' + refreshAccesstokenResponse['access_token']}});
-
+        const newRequest = response.request.clone({setHeaders: {'Authorization': `Bearer ${token}`}});
         return response.repeatRequest(newRequest);
       }))
       .subscribe(
@@ -52,7 +68,7 @@ export function RestangularConfigFactory (RestangularProvider, authService) {
   // when getting a list of resources
   RestangularProvider.addResponseInterceptor((data, operation, what, url, response) => {
     if (operation === 'getList') {
-      response =  data._embedded[what];
+      response =  data._embedded['content'];
       response._links = data._links;
       return response;
     }
@@ -67,7 +83,9 @@ export function RestangularConfigFactory (RestangularProvider, authService) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,

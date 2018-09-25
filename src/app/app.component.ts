@@ -9,9 +9,10 @@ import { Restangular } from 'ngx-restangular';
 })
 export class AppComponent implements OnInit {
 
-  title = 'api-test';
   content;
   baseContent;
+  id;
+  nav;
 
   constructor(private restangular: Restangular) {}
 
@@ -19,10 +20,15 @@ export class AppComponent implements OnInit {
 
     this.baseContent = this.restangular.all('content');
 
-    this.baseContent.getList().subscribe(data => {
-      this.content = data[0];
-    });
+    this.baseContent.getList().subscribe((contentData) => {
+      this.content = contentData[0];
+      this.id = this.content.id;
 
+      this.restangular.one('content', parseInt(this.id, 10)).all('children').getList().subscribe((navData) => {
+        this.nav = navData;
+      });
+
+    });
   }
 
 }
