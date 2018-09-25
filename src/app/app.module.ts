@@ -80,7 +80,7 @@ export function RestangularConfigFactory (RestangularProvider, authService) {
       selfLink: 'self.link'
     });
 }
-;
+
 @NgModule({
   declarations: [
     AppComponent,
