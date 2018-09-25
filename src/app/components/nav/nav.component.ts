@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Restangular } from 'ngx-restangular';
 
 @Component({
   selector: 'app-nav',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private restangular: Restangular) {}
+
+  @Input() nav: string[];
 
   ngOnInit() {
+
+    // console.log(this.id);
+
+    // this.baseNav = this.restangular.one('content', 1106).all('children');
+
+    // this.baseNav.getList().subscribe(data => {
+    //   this.nav = data[0];
+    // });
+
   }
 
 }
