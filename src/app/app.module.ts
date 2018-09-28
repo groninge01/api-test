@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AuthService } from './services/auth.service';
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
+import { HeaderComponent } from './components/header/header.component';
 
 // Function for settting the default restangular configuration
 export function RestangularConfigFactory (RestangularProvider, authService) {
@@ -85,7 +86,8 @@ export function RestangularConfigFactory (RestangularProvider, authService) {
   declarations: [
     AppComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
