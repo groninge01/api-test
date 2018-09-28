@@ -123,5 +123,10 @@
       }
     }
   },
-  "defaultProject": "api-test"
+  "defaultProject": "api-test",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
