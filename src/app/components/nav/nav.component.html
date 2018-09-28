@@ -1,4 +1,5 @@
-<p>
-  nav works!
-</p>
-<pre>{{ nav | json }}</pre>
+<ul class="nav">
+  <li class="nav-item" *ngFor="let nav of navs">
+    <a class="nav-link" href="#">{{ nav.name }}</a>
+  </li>
+</ul>

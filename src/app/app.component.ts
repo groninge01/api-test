@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   content;
   baseContent;
   id;
-  nav;
+  navs;
 
   constructor(private restangular: Restangular) {}
 
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
       this.id = this.content.id;
 
       this.restangular.one('content', parseInt(this.id, 10)).all('children').getList().subscribe((navData) => {
-        this.nav = navData;
+        this.navs = navData;
       });
 
     });
