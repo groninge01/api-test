@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { AuthService } from './services/auth.service';
+import { DataService } from './services/data.service';
+
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -101,7 +103,8 @@ export function RestangularConfigFactory (RestangularProvider, authService) {
     RestangularModule.forRoot([AuthService], RestangularConfigFactory)
   ],
   providers: [
-    AuthService
+    AuthService,
+    DataService
   ],
   bootstrap: [AppComponent]
 })
