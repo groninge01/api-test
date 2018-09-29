@@ -1,5 +1,7 @@
-<ul class="nav">
-  <li class="nav-item" *ngFor="let nav of navs">
-    <a class="nav-link" href="#">{{ nav.name }}</a>
-  </li>
-</ul>
+<div *ngIf="navList">
+  <ul class="nav">
+    <li class="nav-item" *ngFor="let nav of navList">
+      <a class="nav-link" href="#">{{ nav.name }}</a>
+    </li>
+  </ul>
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Restangular } from 'ngx-restangular';
+import { DataService } from '../../services/data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-nav',
@@ -8,12 +9,28 @@ import { Restangular } from 'ngx-restangular';
 })
 export class NavComponent implements OnInit {
 
-  constructor(private restangular: Restangular) {}
+  navListSub: Subscription;
+  navList: string[];
 
-  @Input() navs: string[];
+  constructor(private dataService: DataService) {}
 
   ngOnInit() {
+    this._getNavList();
 
+  }
+
+  private _getNavList() {
+    // Get future, public events
+    this.navListSub = this.dataService
+      .getNavs$()
+      .subscribe(
+        res => {
+          this.navList = res;
+        },
+        err => {
+          console.error(err);
+        }
+      );
   }
 
 }
