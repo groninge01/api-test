@@ -35,14 +35,6 @@ export function RestangularConfigFactory (RestangularProvider, authService) {
   RestangularProvider.addErrorInterceptor((response, subject, responseHandler) => {
     if (response.status === 401) {
 
-      // const _token = localStorage.getItem('token');
-
-      // if (_token) {
-      //   console.log('using old token');
-      //   const newRequest = response.request.clone({setHeaders: {'Authorization': `Bearer ${_token}`}});
-      //   return response.repeatRequest(newRequest);
-      // }
-
       refreshAccesstoken()
       .pipe(
         switchMap(refreshAccesstokenResponse => {
