@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 
 import { AuthService } from './services/auth.service';
 import { DataService } from './services/data.service';
+import { UtilsService } from './services/utils.service';
 
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
@@ -98,7 +99,8 @@ export function RestangularConfigFactory (RestangularProvider, authService) {
   ],
   providers: [
     AuthService,
-    DataService
+    DataService,
+    UtilsService
   ],
   bootstrap: [AppComponent]
 })
