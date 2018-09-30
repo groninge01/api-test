@@ -1,18 +1,24 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { DataService } from '../../services/data.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+
+import { DataService } from '../../services/data.service';
+import { UtilsService} from '../../services/utils.service';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit, OnDestroy {
 
   navListSub: Subscription;
   navList: string[];
+  loading: boolean;
 
-  constructor(private dataService: DataService) {}
+  constructor(
+    private dataService: DataService,
+    public utils: UtilsService
+    ) {}
 
   ngOnInit() {
     this._getNavList();
@@ -20,17 +26,23 @@ export class NavComponent implements OnInit {
   }
 
   private _getNavList() {
-    // Get future, public events
+    this.loading = true;
     this.navListSub = this.dataService
       .getNavs$()
       .subscribe(
         res => {
           this.navList = res;
+          this.loading = false;
         },
         err => {
           console.error(err);
+          this.loading = false;
         }
       );
+  }
+
+  ngOnDestroy() {
+    this.navListSub.unsubscribe();
   }
 
 }

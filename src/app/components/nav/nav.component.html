@@ -1,7 +1,9 @@
-<div *ngIf="navList">
+<app-loading *ngIf="loading"></app-loading>
+
+<ng-template [ngIf]="utils.isLoaded(loading)">
   <ul class="nav">
     <li class="nav-item" *ngFor="let nav of navList">
       <a class="nav-link" href="#">{{ nav.name }}</a>
     </li>
   </ul>
-</div>
+</ng-template>
