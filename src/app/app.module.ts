@@ -15,6 +15,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeroComponent } from './components/hero/hero.component';
+import { LoadingComponent } from './components/loading.component';
 
 // Function for settting the default restangular configuration
 export function RestangularConfigFactory (RestangularProvider, authService) {
@@ -85,7 +86,8 @@ export function RestangularConfigFactory (RestangularProvider, authService) {
     NavComponent,
     HeaderComponent,
     FooterComponent,
-    HeroComponent
+    HeroComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
