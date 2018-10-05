@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AuthService } from './services/auth.service';
 import { DataService } from './services/data.service';
 import { UtilsService } from './services/utils.service';
+import { RequestCacheService } from './services/request-cache.service';
 
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
@@ -17,6 +18,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { LoadingComponent } from './components/loading.component';
+
 
 // Function for settting the default restangular configuration
 export function RestangularConfigFactory (RestangularProvider, authService) {
@@ -100,7 +102,8 @@ export function RestangularConfigFactory (RestangularProvider, authService) {
   providers: [
     AuthService,
     DataService,
-    UtilsService
+    UtilsService,
+    RequestCacheService
   ],
   bootstrap: [AppComponent]
 })
