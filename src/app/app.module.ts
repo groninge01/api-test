@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RestangularModule } from 'ngx-restangular';
 import { switchMap } from 'rxjs/operators';
 
@@ -10,7 +10,8 @@ import { AppComponent } from './app.component';
 import { AuthService } from './services/auth.service';
 import { DataService } from './services/data.service';
 import { UtilsService } from './services/utils.service';
-import { RequestCacheService } from './services/request-cache.service';
+import { RequestCache } from './services/request-cache.service';
+import { CachingInterceptor } from './services/caching-interceptor.service';
 
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
@@ -18,6 +19,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { LoadingComponent } from './components/loading.component';
+
 
 
 // Function for settting the default restangular configuration
@@ -103,7 +105,8 @@ export function RestangularConfigFactory (RestangularProvider, authService) {
     AuthService,
     DataService,
     UtilsService,
-    RequestCacheService
+    RequestCache,
+    { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
